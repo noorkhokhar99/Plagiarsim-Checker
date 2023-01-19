@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plagiarism Checker | Home</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+  <link href="{% static 'pc/styles.css' %}" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #264653;">
+    <a class="navbar-brand" href="{% url 'plagiarism-check-mainpage' %}">Plagiarism Checker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" style="margin-left: 0;">
+        <li class="nav-item nav-one">
+          <a class="nav-link" href="{% url 'plagiarism-check-mainpage' %}">Home <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item nav-two">
+          <a class="nav-link" href="{% url 'compare' %}">Compare Documents</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container content-1">
+    <div class="col-md-6 offset-3 text-content">
+
+      <p>Choose a file or enter text for web search!</p>
+      <div class="tab-content-1">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="text-tab" data-toggle="tab" href="#text-input-ws" role="tab"
+              aria-controls="text-input-ws" aria-selected="true" onclick="makeInvisible()">Text</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="file-tab" data-toggle="tab" href="#file-input-ws" role="tab"
+              aria-controls="file-input-ws" aria-selected="false" onclick="makeVisible()">File Upload</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="text-input-ws" role="tabpanel" aria-labelledby="text-tab">
+           
+            <form id="form1-ws" action="/test/" method="POST">
+              {% csrf_token %}
+              <textarea id="text-1" name="q" required></textarea>
+                </form>
+
+          </div>
+          
+          <div class="tab-pane fade" id="file-input-ws" role="tabpanel" aria-labelledby="file-tab">
+            <form id="form2-ws" action="/filetest/" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <input id="id_docfile" required type="file" name="docfile" />
+              </form>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+      <button type="submit" form="form1-ws" id="submit-button-1" class="btn">Run Search</button>
+      <button type="submit" form="form2-ws" id="submit-button-2" class="btn submit-button-2">Run Search</button>  
+      </div>  
+    </div>
+
+    <div class="container-fluid result-div">
+      <div class="row">
+        <div class="col-md-6 result-1">
+          <h3>Results</h3>
+          <ul class="output-list-1">
+            {% for links in link %}            
+              <li>{{ links }}</li>
+            {% endfor %}
+      </div>
+
+      <div class="col-md-6 result-2" style="text-align: center; align-items: center;">
+        <p class="output-per-tot">{{ percent }}%</p>
+        <p>Plagiarized</p>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function makeVisible() {
+      document.getElementById("submit-button-2").style.visibility = "visible";
+      document.getElementById("submit-button-1").style.visibility = "hidden";
+    }
+
+    function makeInvisible(){
+      document.getElementById("submit-button-2").style.visibility = "hidden";
+      document.getElementById("submit-button-1").style.visibility = "visible";
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+</body>
+
+</html>

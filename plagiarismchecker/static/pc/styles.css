@@ -1,0 +1,114 @@
+body{
+        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        font-family: 'Roboto Mono', monospace;
+        height: 100%; 
+        background-color: rgb(227, 242, 255);   
+}
+
+.tab-content-1{
+    height: 300px;
+    border: 2px solid rgb(131, 130, 130);
+    border-radius: 4px;
+    padding: 3px;
+    background-color: white;
+}
+
+.navbar-brand {
+    font-family: 'Sansita Swashed', cursive; 
+    font-size: 26px; 
+    margin-right: 40px;
+}
+
+
+.navbar-nav{
+    font-size: 20px;     
+}
+
+.navbar-nav li :hover{
+    color: #2a9d8f;    
+    border-bottom: 2px solid #2a9d8f;
+}
+
+.nav-two{
+    margin-left: 40px;
+}
+
+.content-1{
+    margin-top: 10px;
+}
+h1{
+    text-align: center;
+}
+
+.tab-content-1{
+    height: 300px;
+    border: 2px solid rgb(131, 130, 130);
+    border-radius: 4px;
+    padding: 3px;
+}
+.text-content{
+    text-align: center;
+}
+form{
+    padding-top: 20px;
+}
+textarea{
+    width: 90%;
+    height: 170px;
+}
+
+input{
+    border-radius: 2px solid rgb(172, 169, 169);
+}
+
+button{
+    background-color: #2a9d8f;
+}
+
+#submit-button-1 {
+    margin-left: 100px;
+    background-color: #2a9d8f; 
+    color: white;
+}
+
+#submit-button-2{
+    margin-left: 105px;
+    
+    background-color: #2a9d8f; 
+    color: white; 
+    visibility: hidden;  
+}
+
+.output-per-tot{
+    font-size: 35px;
+    color: #264653;
+    padding-top: 43px;
+    margin-left: 175px;
+    margin-top: 5px;
+    text-align: center;
+    width: 155px;
+    height: 155px;
+    border: 7px solid #2a9d8f;
+    border-radius: 50%
+}
+
+#p1 {
+    margin-left: 180px;
+}
+
+.result-div{
+    margin-bottom: 40px;
+}
+
+.result-1{
+    background-color: #acd4d0;
+    padding: 15px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.result-2{
+    padding-top: 25px;
+}
